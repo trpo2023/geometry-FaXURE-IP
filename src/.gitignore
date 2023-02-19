@@ -1,0 +1,5 @@
+*.o
+geometry
+.vscode
+*.swo
+*.swp
