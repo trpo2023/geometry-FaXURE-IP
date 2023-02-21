@@ -21,9 +21,9 @@ int main()
     char* input = malloc(sizeof(char) * 32);
     init_Input(input);
     char del[] = "( ,)";
-    char* token = strtok(input, del);
-    if (strcmp(token, "circle") == 0) {
-        printf("\n%s:\n", token);
+    char* tok = strtok(input, del);
+    if (strcmp(tok, "circle") == 0) {
+        printf("\n%s:\n", tok);
         struct Point p;
 
         p.x = atof(strtok(NULL, del));
