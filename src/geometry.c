@@ -75,7 +75,7 @@ int main()
                            i);
                     break;
                 }
-                if (isdigit(arr[i]) == 0 && arr[i] != '.' && a[i] != '-') {
+                if (isdigit(arr[i]) == 0 && arr[i] != '.' && arr[i] != '-') {
                     err = 1;
                     printf("Err at column %d: expected '<double>'\n", i);
                     break;
