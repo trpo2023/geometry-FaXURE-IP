@@ -3,17 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// void print(char* array)
-// {
-//     float x, y, rad;
-//     char del[] = "( ,)";
-//     char* tok = strtok(array, del);
-//     printf("\n%s:\n", tok);
-//     x = atof(strtok(NULL, del));
-//     y = atof(strtok(NULL, del));
-//     rad = atof(strtok(NULL, del));
-//     printf("\tcenter = (%.3f %.3f)\n\tradius = %.3f\n", x, y, rad);
-// }
 
 int main()
 {
