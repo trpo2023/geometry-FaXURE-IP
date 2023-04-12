@@ -5,8 +5,6 @@ LIB_NAME = libgeometry
 
 CFLAGS = -Wall -Werror
 CPPFLAGS = -I src -MP -MMD
-LDFLAGS = 
-LSLIBS = 
 
 BIN_DIR = bin
 OBJ_DIR = obj
