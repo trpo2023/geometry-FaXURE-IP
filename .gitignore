@@ -1,0 +1,8 @@
+main
+geometry
+*#Makefile#
+*Makefile~
+*.exe
+*.d
+*.a
+*.o

@@ -1,8 +1,0 @@
-circdsale(1 1, 1)
-circle(1 1, 1)
-circle(1 1,123 1)
-circle(1    1,   ^1);
-circle(1      1,     1)
-circle(1 1, 1)
-
-
