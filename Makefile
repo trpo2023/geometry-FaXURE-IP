@@ -1,38 +1,54 @@
+#flag for starting compilation of the .c file
 CC = gcc
-
+#variable for accessing the geometry file/folder
 APP_NAME = geometry
+#The variable of the flag by which we will access the folder with the files of the statistical library
 LIB_NAME = libgeometry
-
+#Flag for starting compiler warning output
 CFLAGS = -Wall -Werror
-CPPFLAGS = -I src -MP -MMD
-
+#Adding the src folder to include path and changing the dependent sources from the header file(-MMD)
+CPPFLAGS = -I src -MD -MMD
+#variable for accessing the bin folder in the following Makefile code
 BIN_DIR = bin
+#variable for accessing the obj folder in the following Makefile code
 OBJ_DIR = obj
+#variable for accessing the src folder in the following Makefile code
 SRC_DIR = src
-
+#accessing the executable code file (bin/geometry)
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
+#accessing executable files of additional files (statistical libraries) (obj/src/libgeometry/libgeometry.o)
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).o
-
+#extension of code files
 SRC_EXT = c
-
+#search for files with the extension .c in the folder src/geometry
 APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
+#Navigating to the object (.o) files of the executable
 APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
-
+#find the files with the extension .c in the src/libgeometry folder
 LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
+#Navigating to the object (.o) files of the executable
 LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
-
-
+#the path to the libraries .h which we connect
+DEPS = $(APP_OBJECTS:.o=.h) $(LIB_OBJECTS:.o=.h)
 all: $(APP_PATH)
 
+-include $(DEPS)
+#targer file and rules to compile it, for geometry.c
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
-
+	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ 
+#targer file and rules to compile it, for librires 
 $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
-
+#targer file and rules to compile it, for object files which create during compilation
 $(OBJ_DIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
-.PHONY: clean all
-run: all
-	$(APP_PATH) $(BIN_DIR)/test.txt
-	$(RM) $(APP_PATH) $(OBJ_DIR)/*/*/*.[aod]
+#So that the make-up does not collect the cleaning instead of with the entire program
+.PHONY: clean
+#rule for clean repositories from object files 
+clean:
+	$(RM) $(APP_PATH) $(OBJ_DIR)/*/*/*.[od]
+#So that the make-up does not collect the runing instead of with the entire program
+.PHONY: run
+# path to run programm
+run:
+	./bin/geometry

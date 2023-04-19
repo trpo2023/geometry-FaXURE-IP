@@ -1,10 +1,12 @@
 #include <ctype.h>
-#include <libgeometry/check.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-const float pi = 3.141592;
+#include <libgeometry/check.h>
+
+#define _USE_MATH_DEFINE_
 
 void token(char* a)
 {
@@ -13,8 +15,8 @@ void token(char* a)
     x = atof(strtok(a, del));
     y = atof(strtok(NULL, del));
     rad = atof(strtok(NULL, del));
-    square = pi * rad * rad;
-    perimetr = 2 * pi * rad;
+    square = M_PI * rad * rad;
+    perimetr = 2 * M_PI * rad;
     printf("x = %.3f\ty = %.3f\trad = %.3f\n", x, y, rad);
     printf("square = %.3f\tperimetr = %.3f\n", square, perimetr);
 }
