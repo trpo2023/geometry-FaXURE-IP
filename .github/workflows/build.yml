@@ -14,7 +14,4 @@ jobs:
 
       - name: Build application
         run: make
-
-      - name: Start programm
-        run: make run
         
