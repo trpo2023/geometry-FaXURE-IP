@@ -33,7 +33,7 @@ DEPS = $(APP_OBJECTS:.o=.h) $(LIB_OBJECTS:.o=.h)
 all: $(APP_PATH)
 
 -include $(DEPS)
-#targer file and rules to compile it, for geometry.c
+#targer file and rules to compile it, for geometry.c and check.c
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ 
 #targer file and rules to compile it, for librires 
