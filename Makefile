@@ -46,11 +46,10 @@ $(OBJ_DIR)/%.o: %.c
 .PHONY: clean
 #rule for clean repositories from object files 
 clean:
-	$(RM) $(APP_PATH) $(OBJ_DIR)/*/*/*.[od]
+	$(RM) $(APP_PATH) $(OBJ_DIR)/*/*.[od]
 #So that the make-up does not collect the runing instead of with the entire program
 .PHONY: run
 # path to run programm
 run:
 	./bin/geometry
 
-	
