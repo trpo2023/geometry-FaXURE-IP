@@ -52,3 +52,5 @@ clean:
 # path to run programm
 run:
 	./bin/geometry
+
+	
