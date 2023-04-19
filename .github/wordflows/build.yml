@@ -17,3 +17,4 @@ jobs:
 
       - name: Start programm
         run: make run
+        
