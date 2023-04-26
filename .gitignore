@@ -1,0 +1,10 @@
+main
+*#Makefile#
+*Makefile~
+*.exe
+*.d
+*.a
+*.o
+output
+.vscode
+1231.txt
