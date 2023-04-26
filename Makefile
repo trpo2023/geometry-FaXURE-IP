@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror
+CPPFLAGS = -I src -MP -MMD
 
 APP_NAME = geometry
 LIB_NAME = libgeometry
@@ -7,13 +8,11 @@ TEST_NAME = test
 
 BIN_DIR = bin
 OBJ_DIR = obj
-OBJ_DIR_SRC = obj/src
-OBJ_DIR_TEST = obj/test
 SRC_DIR = src
 TEST_DIR = test
 
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
-LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).o
+LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 TEST_PATH = $(BIN_DIR)/$(TEST_NAME)
 
 SRC_EXT = c
@@ -56,6 +55,11 @@ $(TEST_PATH): $(TEST_OBJECTS) $(LIB_PATH)
 clean:
 	$(RM) obj/src/libgeometry/*.o
 	$(RM) obj/src/geometry/*.o
+	$(RM) obj/src/libgeometry/*.d
+	$(RM) obj/src/geometry/*.d
+	$(RM) obj/src/libgeometry/*.a
+	$(RM) obj/src/geometry/*.a
 	$(RM) obj/test/*.o
 	$(RM) obj/test/*.d
+	$(RM) obj/test/*.a
 	$(RM) bin/*.exe
