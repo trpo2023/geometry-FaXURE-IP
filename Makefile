@@ -44,13 +44,13 @@ $(OBJ_DIR)/%.o: %.c
 .PHONY: run clean test
 
 run:
-	./bin/test
 	./bin/geometry
 
 test: $(TEST_PATH)
 
 $(TEST_PATH): $(TEST_OBJECTS) $(LIB_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	./bin/test
 
 clean:
 	$(RM) obj/src/libgeometry/*.o

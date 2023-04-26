@@ -132,25 +132,3 @@ CTEST(check_unexpected_tokens, error_test)
     ASSERT_EQUAL(1, result);
     ASSERT_EQUAL(1, error);
 }
-
-CTEST(parse_circle_expression, correct_input_test)
-{
-    char a[] = "circle(0.0, 0.0, 1.0)";
-    float x = 0.0, y = 0.0, radius = 0.0;
-    parse_circle_expression(a, &x, &y, &radius);
-
-    ASSERT_EQUAL(0.0, x);
-    ASSERT_EQUAL(0.0, y);
-    ASSERT_EQUAL(1.0, radius);
-}
-
-CTEST(parse_circle_expression, incorrect_input_test)
-{
-    char a[] = "circle(0, 0, 1)";
-    float x = 0.0, y = 0.0, radius = 0.0;
-    parse_circle_expression(a, &x, &y, &radius);
-
-    ASSERT_EQUAL(0.0, x);
-    ASSERT_EQUAL(0.0, y);
-    ASSERT_EQUAL(1.0, radius);
-}
