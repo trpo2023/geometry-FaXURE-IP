@@ -27,49 +27,42 @@ int main()
     }
     length = count;
     fclose(file1);
-    int figure_amount = 0;
-    float* x_arr = (float*)malloc(figure_amount * sizeof(float));
-    float* y_arr = (float*)malloc(figure_amount * sizeof(float));
-    float* radius_arr = (float*)malloc(figure_amount * sizeof(float));
+    int amount = 0;
+    float* x_arr = (float*)malloc(amount * sizeof(float));
+    float* y_arr = (float*)malloc(amount * sizeof(float));
+    float* rad_arr = (float*)malloc(amount * sizeof(float));
 
     char a[length], b[6] = "circle";
     file = fopen("geometry.txt", "r");
     while (fgets(a, length + 1, file)) {
-        printf("%s", a);
+        int open_index = check_circle_word(a, b, &error);
 
-        int open_bracket_index = check_circle_word(a, b, &error);
+        int close_index = search_close_index(a, &length);
 
-        int close_bracket_index = search_close_bracket_index(a, &length);
+        int first_index = check_first_number(a, &open_index, &error);
 
-        int first_num_elem_index
-                = check_first_number(a, &open_bracket_index, &error);
+        int second_index = check_second_number(a, &first_index, &error);
 
-        int second_num_elem_index
-                = check_second_number(a, &first_num_elem_index, &error);
+        int third_index
+                = check_third_number(a, &second_index, &close_index, &error);
 
-        int third_num_elem_index = check_third_number(
-                a, &second_num_elem_index, &close_bracket_index, &error);
+        close_index = get_close_index(a, &third_index, &length, &error);
 
-        close_bracket_index = get_close_bracket_index(
-                a, &third_num_elem_index, &length, &error);
-
-        error = check_unexpected_tokens(
-                a, &close_bracket_index, &length, &error);
-
+        error = check_unexpected_tokens(a, &close_index, &length, &error);
         if (error == 0) {
-            printf("No Errors!\n");
+            puts("\n");
             float x = 0, y = 0, radius = 0;
             parse_circle_expression(a, &x, &y, &radius);
-            x_arr[figure_amount] = x;
-            y_arr[figure_amount] = y;
-            radius_arr[figure_amount] = radius;
-            figure_amount += 1;
+            x_arr[amount] = x;
+            y_arr[amount] = y;
+            rad_arr[amount] = radius;
+            amount += 1;
         }
 
         error = 0;
-        printf("\n");
+        puts("\n");
     }
 
-    find_intersections(x_arr, y_arr, radius_arr, figure_amount);
+    find_intersections(x_arr, y_arr, rad_arr, amount);
     return 0;
 }
