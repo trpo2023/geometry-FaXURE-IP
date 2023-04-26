@@ -6,6 +6,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+double sqroot(double square)
+{
+    double root = square / 3;
+    int i;
+    if (square <= 0)
+        return 0;
+    for (i = 0; i < 32; i++)
+        root = (root + square / root) / 2;
+    return root;
+}
+
 int check_word(char* a, char* b, int* error)
 {
     int open_bracket_index;
@@ -176,6 +187,7 @@ void intersects(
             // distance between centers
             double r = sqrt(x_arr[j] - x_arr[i]) * (x_arr[j] - x_arr[i])
                     + (y_arr[j] - y_arr[i]) * (y_arr[j] - y_arr[i]);
+            r = sqroot(r);
             // checking for the coincidence of two circles
             if (r == 0 && radius_arr[i] == radius_arr[j] && j != i) {
                 // intersects
