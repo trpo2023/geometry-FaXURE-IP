@@ -1,20 +1,23 @@
-void check_word(char* a, char* b, int* error, int* ind_open_bracket);
-void find_close_bracket(char* a, int* length, int* ind_close_bracket);
-void check_first_num(
-        char* a, int* ind_open_bracket, int* ind_first_num_elm, int* error);
-void check_second_num(
-        char* a, int* ind_first_num_elm, int* ind_second_num_elm, int* error);
-void check_third_num(
-        char* a,
-        int* ind_second_num_elm,
-        int* ind_last_num_elm,
-        int* error,
-        int* ind_close_bracket);
-void check_close_bracket(
-        char* a,
-        int* ind_last_num_elm,
-        int* length,
-        int* ind_close_bracket,
-        int* error);
-void check_unexpected_token(
-        char* a, int* ind_close_bracket, int* length, int* error);
+#ifndef CHECK_H
+#define CHECK_H
+
+int check_circle_word(char* a, char* b, int* error);
+
+int search_close_index(char* a, int* length);
+
+int check_first_number(char* a, int* open_index, int* error);
+
+int check_second_number(char* a, int* first_index, int* error);
+
+int check_third_number(
+        char* a, int* second_index, int* close_index, int* error);
+
+int get_close_index(char* a, int* third_index, int* length, int* error);
+
+int check_unexpected_tokens(char* a, int* close_index, int* length, int* error);
+
+void parse_circle_expression(char* a, float* x, float* y, float* rad);
+
+void find_intersections(float* x_arr, float* y_arr, float* rad_arr, int amount);
+
+#endif /* CHECK_H */
