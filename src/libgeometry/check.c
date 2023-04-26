@@ -174,8 +174,8 @@ void intersects(
         printf("\ncircle %d. intersects ", i);
         for (int j = 0; j < figure_amount; j++) {
             // distance between centers
-            double r = sqrt(
-                    pow(x_arr[j] - x_arr[i], 2) + pow(y_arr[j] - y_arr[i], 2));
+            double r = sqrt(x_arr[j] - x_arr[i]) * (x_arr[j] - x_arr[i])
+                    + (y_arr[j] - y_arr[i]) * (y_arr[j] - y_arr[i]);
             // checking for the coincidence of two circles
             if (r == 0 && radius_arr[i] == radius_arr[j] && j != i) {
                 // intersects
