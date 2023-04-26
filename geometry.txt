@@ -1,2 +1,4 @@
-circle(1 2, 3)
-circle(1.2 3.45, 123)
+circle(4 2, 8)
+circle(2 2, 8)
+circle(8 2, 2)
+circle(2 2, 21)

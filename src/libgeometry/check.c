@@ -167,9 +167,11 @@ void token(char* a, float* x, float* y, float* radius) // change
 void intersects(
         float* x_arr, float* y_arr, float* radius_arr, int figure_amount)
 {
+    int intersections_amount = 0;
     printf("\nIntersections:\n");
     for (int i = 0; i < figure_amount; i++) {
-        printf("\ncircle %d. intersects circle(s) ", i);
+        intersections_amount = 0;
+        printf("\ncircle %d. intersects ", i);
         for (int j = 0; j < figure_amount; j++) {
             // distance between centers
             double r = sqrt(
@@ -177,7 +179,8 @@ void intersects(
             // checking for the coincidence of two circles
             if (r == 0 && radius_arr[i] == radius_arr[j] && j != i) {
                 // intersects
-                printf("%d. ", j);
+                intersections_amount++;
+                printf("circle %d.\t", j);
             }
             // checking for the intersection of circles according to the
             // triangle rule
@@ -185,9 +188,13 @@ void intersects(
                 && radius_arr[i] + r >= radius_arr[j]
                 && r + radius_arr[j] >= radius_arr[i] && j != i) {
                 // intersects
-                printf("%d. ", j);
+                intersections_amount++;
+                printf("circle %d.\t", j);
             }
         }
+    }
+    if (intersections_amount == 0) {
+        printf("nothing");
     }
     puts("\n");
 }
