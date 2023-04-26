@@ -37,7 +37,7 @@ int main()
     while (fgets(a, length + 1, file)) {
         printf("%s", a);
 
-        int open_bracket_index = check_word(a, b, &error);
+        int open_bracket_index = check_circle_word(a, b, &error);
 
         int close_bracket_index = search_close_bracket_index(a, &length);
 
@@ -50,7 +50,7 @@ int main()
         int third_num_elem_index = check_third_number(
                 a, &second_num_elem_index, &close_bracket_index, &error);
 
-        close_bracket_index = check_close_bracket_index(
+        close_bracket_index = get_close_bracket_index(
                 a, &third_num_elem_index, &length, &error);
 
         error = check_unexpected_tokens(
@@ -59,7 +59,7 @@ int main()
         if (error == 0) {
             printf("No Errors!\n");
             float x = 0, y = 0, radius = 0;
-            token(a, &x, &y, &radius);
+            parse_circle_expression(a, &x, &y, &radius);
             x_arr[figure_amount] = x;
             y_arr[figure_amount] = y;
             radius_arr[figure_amount] = radius;
@@ -70,6 +70,6 @@ int main()
         printf("\n");
     }
 
-    intersects(x_arr, y_arr, radius_arr, figure_amount);
+    find_intersections(x_arr, y_arr, radius_arr, figure_amount);
     return 0;
 }

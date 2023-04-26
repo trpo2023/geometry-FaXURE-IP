@@ -6,12 +6,12 @@
 #include "../src/libgeometry/check.h"
 #include "../thirdparty/ctest.h"
 
-CTEST(check_word, correct_word_test)
+CTEST(check_circle_word, correct_word_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)";
     char b[] = "circle";
     int error = 0;
-    int result = check_word(a, b, &error);
+    int result = check_circle_word(a, b, &error);
 
     ASSERT_EQUAL(6, result);
     ASSERT_EQUAL(0, error);
@@ -95,22 +95,22 @@ CTEST(check_third_number, error_input_test)
     ASSERT_NOT_EQUAL(21, result);
     ASSERT_EQUAL(1, error);
 }
-CTEST(check_close_bracket_index, no_error_test)
+CTEST(get_close_bracket_index, no_error_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)";
     int third_num_elem_index = 7, length = strlen(a), error = 0;
-    int result = check_close_bracket_index(
+    int result = get_close_bracket_index(
             a, &third_num_elem_index, &length, &error);
 
     ASSERT_EQUAL(0, result);
     ASSERT_EQUAL(1, error);
 }
 
-CTEST(check_close_bracket_index, error_test)
+CTEST(get_close_bracket_index, error_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0";
     int third_num_elem_index = 7, length = strlen(a), error = 0;
-    int result = check_close_bracket_index(
+    int result = get_close_bracket_index(
             a, &third_num_elem_index, &length, &error);
 
     ASSERT_EQUAL(0, result);
@@ -139,22 +139,22 @@ CTEST(check_unexpected_tokens, error_test)
     ASSERT_EQUAL(1, error);
 }
 
-CTEST(token, correct_input_test)
+CTEST(parse_circle_expression, correct_input_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)";
     float x = 0.0, y = 0.0, radius = 0.0;
-    token(a, &x, &y, &radius);
+    parse_circle_expression(a, &x, &y, &radius);
 
     ASSERT_EQUAL(0.0, x);
     ASSERT_EQUAL(0.0, y);
     ASSERT_EQUAL(1.0, radius);
 }
 
-CTEST(token, incorrect_input_test)
+CTEST(parse_circle_expression, incorrect_input_test)
 {
     char a[] = "circle(0, 0, 1)";
     float x = 0.0, y = 0.0, radius = 0.0;
-    token(a, &x, &y, &radius);
+    parse_circle_expression(a, &x, &y, &radius);
 
     ASSERT_EQUAL(0.0, x);
     ASSERT_EQUAL(0.0, y);

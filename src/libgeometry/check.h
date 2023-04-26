@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int check_word(char* a, char* b, int* error);
+int check_circle_word(char* a, char* b, int* error);
 
 int search_close_bracket_index(char* a, int* length);
 
@@ -20,15 +20,15 @@ int check_third_number(
         int* close_bracket_index,
         int* error);
 
-int check_close_bracket_index(
+int get_close_bracket_index(
         char* a, int* third_num_elem_index, int* length, int* error);
 
 int check_unexpected_tokens(
         char* a, int* close_bracket_index, int* length, int* error);
 
-void token(char* a, float* x, float* y, float* radius);
+void parse_circle_expression(char* a, float* x, float* y, float* radius);
 
-void intersects(
+void find_intersections(
         float* x_arr, float* y_arr, float* radius_arr, int figure_amount);
 
 #endif /* CHECK_H */

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-double sqroot(double square)
+double square_root(double square)
 {
     double root = square / 3;
     int i;
@@ -17,7 +17,7 @@ double sqroot(double square)
     return root;
 }
 
-int check_word(char* a, char* b, int* error)
+int check_circle_word(char* a, char* b, int* error)
 {
     int open_bracket_index;
 
@@ -121,7 +121,7 @@ int check_third_number(
     return third_num_elem_index;
 }
 
-int check_close_bracket_index(
+int get_close_bracket_index(
         char* a, int* third_num_elem_index, int* length, int* error)
 {
     int close_bracket_index = 0;
@@ -162,20 +162,20 @@ int check_unexpected_tokens(
     return *error;
 }
 
-void token(char* a, float* x, float* y, float* radius) // change
+void parse_circle_expression(char* a, float* x, float* y, float* radius)
 {
     float square, perimeter;
     char del[] = "circle( ,)";
-    *x = atof(strtok(a, del));                                      // change
-    *y = atof(strtok(NULL, del));                                   // change
-    *radius = atof(strtok(NULL, del));                              // change
-    square = M_PI * *radius * *radius;                              // change
-    perimeter = 2 * M_PI * *radius;                                 // change
-    printf("x = %.3f\ty = %.3f\tradius = %.3f\n", *x, *y, *radius); // change
+    *x = atof(strtok(a, del));
+    *y = atof(strtok(NULL, del));
+    *radius = atof(strtok(NULL, del));
+    square = M_PI * *radius * *radius;
+    perimeter = 2 * M_PI * *radius;
+    printf("x = %.3f\ty = %.3f\tradius = %.3f\n", *x, *y, *radius);
     printf("square = %.3f\tperimeter = %.3f\n", square, perimeter);
 }
 
-void intersects(
+void find_intersections(
         float* x_arr, float* y_arr, float* radius_arr, int figure_amount)
 {
     int intersections_amount = 0;
@@ -187,7 +187,7 @@ void intersects(
             // distance between centers
             double r = (x_arr[j] - x_arr[i]) * (x_arr[j] - x_arr[i])
                     + (y_arr[j] - y_arr[i]) * (y_arr[j] - y_arr[i]);
-            r = sqroot(r);
+            r = square_root(r);
             // checking for the coincidence of two circles
             if (r == 0 && radius_arr[i] == radius_arr[j] && j != i) {
                 // intersects
