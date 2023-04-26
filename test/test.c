@@ -79,7 +79,8 @@ CTEST(check_third_number, correct_input_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)";
     int second_num_elem_index = 16, error = 1, close_bracket_index = 17;
-    int result = check_third_number(a, &second_num_elem_index, &close_bracket_index, &error);
+    int result = check_third_number(
+            a, &second_num_elem_index, &close_bracket_index, &error);
 
     ASSERT_EQUAL(0, result);
 }
@@ -88,7 +89,8 @@ CTEST(check_third_number, error_input_test)
 {
     char a[] = "circle(0.0, 0.0, 1.x)";
     int second_num_elem_index = 16, error = 1, close_bracket_index = 17;
-    int result = check_third_number(a, &second_num_elem_index, &close_bracket_index, &error);
+    int result = check_third_number(
+            a, &second_num_elem_index, &close_bracket_index, &error);
 
     ASSERT_NOT_EQUAL(21, result);
     ASSERT_EQUAL(1, error);
@@ -97,7 +99,8 @@ CTEST(check_close_bracket_index, no_error_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)";
     int third_num_elem_index = 7, length = strlen(a), error = 0;
-    int result = check_close_bracket_index(a, &third_num_elem_index, &length, &error);
+    int result = check_close_bracket_index(
+            a, &third_num_elem_index, &length, &error);
 
     ASSERT_EQUAL(0, result);
     ASSERT_EQUAL(1, error);
@@ -107,7 +110,8 @@ CTEST(check_close_bracket_index, error_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0";
     int third_num_elem_index = 7, length = strlen(a), error = 0;
-    int result = check_close_bracket_index(a, &third_num_elem_index, &length, &error);
+    int result = check_close_bracket_index(
+            a, &third_num_elem_index, &length, &error);
 
     ASSERT_EQUAL(0, result);
     ASSERT_EQUAL(1, error);
@@ -117,7 +121,8 @@ CTEST(check_unexpected_tokens, no_error_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)\n";
     int close_bracket_index = 14, length = strlen(a), error = 0;
-    int result = check_unexpected_tokens(a, &close_bracket_index, &length, &error);
+    int result
+            = check_unexpected_tokens(a, &close_bracket_index, &length, &error);
 
     ASSERT_EQUAL(1, result);
     ASSERT_EQUAL(1, error);
@@ -127,7 +132,8 @@ CTEST(check_unexpected_tokens, error_test)
 {
     char a[] = "circle(0.0, 0.0, 1.0)x";
     int close_bracket_index = 14, length = strlen(a), error = 0;
-    int result = check_unexpected_tokens(a, &close_bracket_index, &length, &error);
+    int result
+            = check_unexpected_tokens(a, &close_bracket_index, &length, &error);
 
     ASSERT_EQUAL(1, result);
     ASSERT_EQUAL(1, error);
